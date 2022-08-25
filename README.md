@@ -1,2 +1,3 @@
-# gitinit-resume.github.io
-A resume builder dynamic website using javascript.
+# .resume - A Resume Builder Web Application.
+
+## A resume builder dynamic website using javascript.
