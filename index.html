@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume builder</title>
+
+    <!-- javascript main -->
+    <script src="build.js"></script>
+
+    <!-- pdf Save -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+    <!-- css main -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- bootstrap 4-->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+
+    <!-- bootstrap 5-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- floura text editor css-->
+    <!-- <link href="node_modules/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" /> -->
+
+    <!-- resume css -->
+    <link rel="shortcut icon" href="assets/images/fav.jpg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawsom-all.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+</head>
+
+<body>
+    <nav class="navi navbar navbar-dark bg-dark my-4 rounded-pill">
+        <div class="h3">.resume</div>
+    </nav>
+
+    <div class="totalInput" id="totalInput">
+        <!-- Personal info section -->
+        <div class="input-1" id="input-1">
+            <h5>PERSONAL INFORMATION</h5> <br>
+            <div class="row">
+                <div class="input-group mb-5 mx-2 col">
+                    <input type="file" class="form-control" id="inimage" onchange="loadFile(event)">
+                    <label class="input-group-text" for="inimage">Upload</label>
+                </div>
+
+                <div class="input-group mb-5 mx-2 col">
+                    <span class="input-group-text">&nbsp;First
+                        Name</span>
+                    <input type="text" class="form-control" id="fname" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group mb-5 mx-2 col">
+                    <span class="input-group-text" id="inputGroup-sizing-default">&nbsp;Your Addr.</span>
+                    <input type="text" class="form-control" id="inarea" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div class="input-group mb-5 mx-2 col">
+                    <span class="input-group-text">&nbsp;Last
+                        Name</span>
+                    <input type="text" class="form-control" id="lname" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group mb-5 mx-2 col">
+                    <span class="input-group-text" id="inputGroup-sizing-default">&nbsp;Zip&nbsp;&nbsp;Code&nbsp;</span>
+                    <input type="number" class="form-control" id="inzipcode" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div class="input-group mb-5 mx-2 col">
+                    <span class="input-group-text" id="inputGroup-sizing-default">&nbsp;City Name</span>
+                    <input type="text" class="form-control" id="incity" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group mb-5 mx-2 col">
+                    <span class="input-group-text" id="inputGroup-sizing-default">&nbsp;Phone No.</span>
+                    <input type="number" class="form-control" id="inphone" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div class="input-group mb-5 mx-2 col">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Email Addr</span>
+                    <input type="email" class="form-control" id="inemail" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-5 mx-2">
+                    <select class="form-select" id="incountry" aria-label="Default select example">
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="American Samoa">American Samoa</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Anguilla">Anguilla</option>
+                        <option value="Antartica">Antarctica</option>
+                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Aruba">Aruba</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bermuda">Bermuda</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia and Herzegowina">Bosnia and Herzegowina</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Bouvet Island">Bouvet Island</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                        <option value="Brunei Darussalam">Brunei Darussalam</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Cape Verde">Cape Verde</option>
+                        <option value="Cayman Islands">Cayman Islands</option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Christmas Island">Christmas Island</option>
+                        <option value="Cocos Islands">Cocos (Keeling) Islands</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo">Congo</option>
+                        <option value="Congo">Congo, the Democratic Republic of the</option>
+                        <option value="Cook Islands">Cook Islands</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Cota D'Ivoire">Cote d'Ivoire</option>
+                        <option value="Croatia">Croatia (Hrvatska)</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="East Timor">East Timor</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Falkland Islands">Falkland Islands (Malvinas)</option>
+                        <option value="Faroe Islands">Faroe Islands</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="France Metropolitan">France, Metropolitan</option>
+                        <option value="French Guiana">French Guiana</option>
+                        <option value="French Polynesia">French Polynesia</option>
+                        <option value="French Southern Territories">French Southern Territories</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Gibraltar">Gibraltar</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Greenland">Greenland</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guadeloupe">Guadeloupe</option>
+                        <option value="Guam">Guam</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Heard and McDonald Islands">Heard and Mc Donald Islands</option>
+                        <option value="Holy See">Holy See (Vatican City State)</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India" selected>India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran">Iran (Islamic Republic of)</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Democratic People's Republic of Korea">Korea, Democratic People's Republic of
+                        </option>
+                        <option value="Korea">Korea, Republic of</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Lao">Lao People's Democratic Republic</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Macau">Macau</option>
+                        <option value="Macedonia">Macedonia, The Former Yugoslav Republic of</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Martinique">Martinique</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mayotte">Mayotte</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Micronesia">Micronesia, Federated States of</option>
+                        <option value="Moldova">Moldova, Republic of</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar">Myanmar</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="Netherlands Antilles">Netherlands Antilles</option>
+                        <option value="New Caledonia">New Caledonia</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="Niue">Niue</option>
+                        <option value="Norfolk Island">Norfolk Island</option>
+                        <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau">Palau</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Pitcairn">Pitcairn</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Puerto Rico">Puerto Rico</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Reunion">Reunion</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russian Federation</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                        <option value="Saint LUCIA">Saint LUCIA</option>
+                        <option value="Saint Vincent">Saint Vincent and the Grenadines</option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia (Slovak Republic)</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="South Georgia">South Georgia and the South Sandwich Islands</option>
+                        <option value="Span">Spain</option>
+                        <option value="SriLanka">Sri Lanka</option>
+                        <option value="St. Helena">St. Helena</option>
+                        <option value="St. Pierre and Miguelon">St. Pierre and Miquelon</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Svalbard">Svalbard and Jan Mayen Islands</option>
+                        <option value="Swaziland">Swaziland</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syrian Arab Republic</option>
+                        <option value="Taiwan">Taiwan, Province of China</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania, United Republic of</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tokelau">Tokelau</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Turks and Caicos">Turks and Caicos Islands</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                        <option value="United States Minor Outlying Islands">United States Minor Outlying Islands
+                        </option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Viet Nam</option>
+                        <option value="Virgin Islands (British)">Virgin Islands (British)</option>
+                        <option value="Virgin Islands (U.S)">Virgin Islands (U.S.)</option>
+                        <option value="Wallis and Futana Islands">Wallis and Futuna Islands</option>
+                        <option value="Western Sahara">Western Sahara</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                </div>
+                <div class="input-group mb-5 mx-2 col">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Profession</span>
+                    <input type="email" class="form-control" id="inprofession" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <div class="col mx-2 btn-next">
+                <button type="button" class="btn btn-dark rounded-pill" onclick="nextInput()">&nbsp; <b>Save & Next</b>
+                    &nbsp;</button>
+            </div>
+        </div>
+
+
+
+
+        <!-- Skills Section -->
+        <div class="input-2" id="input-2">
+            <h5>OBJECTIVE / SUMMERY</h5> <br>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder=" " id="inobjective" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Enter Overall Objective / Summery for the Cv here!</label>
+            </div> <br>
+
+            <h5>TOP SKILLS</h5> <br>
+
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inskill1" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Skill</label>
+                </div>
+
+
+                <div class="mb-5 mx-2 col">
+                    <select class="form-select" id="inpipe1" for="inpipe1" aria-label="Default select example">
+                        <option selected>Select Expertise Level</option>
+                        <option value="25%">25%</option>
+                        <option value="50%">50%</option>
+                        <option value="75%">75%</option>
+                        <option value="80%">80%</option>
+                        <option value="96%">96%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inskill2" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Skill</label>
+                </div>
+
+                <div class="mb-5 mx-2 col">
+                    <select class="form-select " id="inpipe2" for="inpipe2" aria-label="Default select example">
+                        <option selected>Select Expertise Level</option>
+                        <option value="25%">25%</option>
+                        <option value="50%">50%</option>
+                        <option value="75%">75%</option>
+                        <option value="80%">80%</option>
+                        <option value="96%">96%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inskill3" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Skill</label>
+                </div>
+
+                <div class="mb-5 mx-2 col">
+                    <select class="form-select" id="inpipe3" for="inpipe3" aria-label="Default select example">
+                        <option selected>Select Expertise Level</option>
+                        <option value="25%">25%</option>
+                        <option value="50%">50%</option>
+                        <option value="75%">75%</option>
+                        <option value="80%">80%</option>
+                        <option value="96%">96%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inskill4" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Skill</label>
+                </div>
+
+                <div class="mb-5 mx-2 col">
+                    <select class="form-select" id="inpipe4" for="inpipe4" aria-label="Default select example">
+                        <option selected>Select Expertise Level</option>
+                        <option value="25%">25%</option>
+                        <option value="50%">50%</option>
+                        <option value="75%">75%</option>
+                        <option value="80%">80%</option>
+                        <option value="96%">96%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col mb-5 mx-2 btn-next"><button type="button" class="btn btn-dark rounded-pill"
+                        onclick="backFirst()">&nbsp;<b>Edit Previous</b>&nbsp;</button></div>
+
+                <div class="col btn-next"><button type="button" class="btn btn-dark rounded-pill"
+                        onclick="nextninput()">&nbsp;<b>Save &
+                            Next</b>&nbsp;</button></div>
+            </div>
+        </div>
+
+
+
+        <!-- Education section -->
+        <div class="input-3" id="input-3">
+            <h5>EDUCATION</h5> <br>
+            <h6><i class="far fa-hand-point-right"></i> </h6> <br>
+
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="indegree" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Degree</label>
+                </div>
+
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inschool" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;School</label>
+                </div>
+            </div>
+
+            <div class="form-floating mb-5 mx-2">
+                <input type="text" class="form-control" id="inscfromto" placeholder=" ">
+                <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;From - To</label>
+            </div>
+
+            <h6><i class="far fa-hand-point-right"></i> </h6> <br>
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="indegree2" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Degree</label>
+                </div>
+
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inschool2" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;School</label>
+                </div>
+            </div>
+
+            <div class="form-floating mb-5 mx-2">
+                <input type="text" class="form-control" id="inscfromto2" placeholder=" ">
+                <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;From - To</label>
+            </div>
+
+            <div class="row">
+                <div class="col mb-5 mx-2 btn-next"><button type="button" class="btn btn-dark rounded-pill"
+                        onclick="back3rdLast()">&nbsp;<b>Edit Previous</b>&nbsp;</button></div>
+
+                <div class="col btn-next"><button type="button" class="btn btn-dark rounded-pill"
+                        onclick="nextn2input()">&nbsp;<b>Save &
+                            Next</b>&nbsp;</button></div>
+            </div>
+        </div>
+
+
+
+        <!-- EXPERIENCE Section -->
+        <div class="input-4" id="input-4">
+            <h5>EXPERIENCE</h5> <br>
+            <h6><i class="far fa-hand-point-right"></i> </h6> <br>
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="incompany1" placeholder=" ">
+                    <label for="incompany1">&nbsp;&nbsp;&nbsp;&nbsp;Employer</label>
+                </div>
+
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inexp1" placeholder=" ">
+                    <label for="inexp1">&nbsp;&nbsp;&nbsp;&nbsp;Job Role</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="incityexp1" placeholder=" ">
+                    <label for="incityexp1">&nbsp;&nbsp;&nbsp;&nbsp;City</label>
+                </div>
+
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Country</label>
+                </div>
+            </div>
+
+            <div class="form-floating mb-5 mx-2">
+                <input type="text" class="form-control" id="infromto" placeholder=" ">
+                <label for="infromto">&nbsp;&nbsp;&nbsp;&nbsp;From - To</label>
+            </div>
+
+            <div class="mb-5 mx-2">
+                <h6>
+                    <center> Enter Job Description Here! </center>
+                </h6>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder=" " id="indescriptionex"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2"></label>
+                </div>
+            </div>
+
+            <h6><i class="far fa-hand-point-right"></i> </h6> <br>
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="incompany2" placeholder=" ">
+                    <label for="incompany2">&nbsp;&nbsp;&nbsp;&nbsp;Employer</label>
+                </div>
+
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inexp2" placeholder=" ">
+                    <label for="inexp2">&nbsp;&nbsp;&nbsp;&nbsp;Job Role</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="incityexp2" placeholder=" ">
+                    <label for="incityexp2">&nbsp;&nbsp;&nbsp;&nbsp;City</label>
+                </div>
+
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Country</label>
+                </div>
+            </div>
+
+            <div class="form-floating mb-5 mx-2">
+                <input type="text" class="form-control" id="infromto2" placeholder=" ">
+                <label for="infromto2">&nbsp;&nbsp;&nbsp;&nbsp;From - To</label>
+            </div>
+
+            <div class="mb-5 mx-2">
+                <h6>
+                    <center> Enter Job Description Here! </center>
+                </h6>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder=" " id="indescriptionex2"
+                        style="height: 100px"></textarea>
+                    <label for="floatingTextarea2"></label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-5 mx-2 col  btn-next"><button type="button" class="btn btn-dark rounded-pill"
+                        onclick="back2ndLast()">&nbsp;<b>Edit Previous
+                        </b>&nbsp;</button></div>
+
+                <div class="col btn-next"><button type="button" class="btn btn-dark rounded-pill"
+                        onclick="nextn3input()">&nbsp;<b>Save &
+                            Next</b>&nbsp;</button></div>
+            </div>
+        </div>
+
+        <!-- Referencess section -->
+        <div class="input-5" id="input-5">
+            <h1>REFERENCESS</h1> <br>
+            <div>
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inlinkedin" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Linkedin</label>
+                </div>
+
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="ingithub" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Github</label>
+                </div>
+
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="infb" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Facebook</label>
+                </div>
+
+                <div class="form-floating mb-5 mx-2 col">
+                    <input type="text" class="form-control" id="inbehance" placeholder=" ">
+                    <label for="floatingInput">&nbsp;&nbsp;&nbsp;&nbsp;Behance</label>
+                </div>
+
+                <div class="row">
+
+                    <div class="btn-back mb-5 mx-2 col"><a><button type="button" class="btn btn-dark rounded-pill"
+                                onclick="backLast()">&nbsp;<b>Back &
+                                    Edit</b>&nbsp;</button></a>
+                    </div>
+
+                    <div class="btn-next mb-5 mx-2 col"><a><button type="button" class="btn btn-dark rounded-pill"
+                                onclick="openResume()">&nbsp;<b>Save
+                                    &
+                                    Preview</b>&nbsp;</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <!-- created resume -->
+    <div class="resume" id="resume">
+        <div class="container profile-box">
+            <div class="row">
+                <div class="col-md-4 left-co">
+                    <div class="left-side">
+                        <div class="profile-info" id="profile-info">
+                            <img src="assets/images/profile.png" alt="" id="image">
+                            <h3 id="name"></h3>
+                            <span id="profession"></span>
+                        </div>
+                        <h4 class="ltitle">Contact</h4>
+                        <div class="contact-box pb0">
+                            <div class="icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="detail" id="phone">
+                            </div>
+                        </div>
+                        <div class="contact-box pb0">
+                            <div class="icon">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <div class="detail" id="email">
+                            </div>
+                        </div>
+                        <div class="contact-box">
+                            <div class="icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="detail" id="location">
+                            </div>
+                        </div>
+
+                        <h4 class="ltitle">Referencess</h4>
+                        <div class="refer-cov">
+                            <b>Linked in</b>
+                            <p></p>
+                            <span id="linkedin"></span>
+                        </div>
+                        <div class="refer-cov">
+                            <b>Github</b>
+                            <p></p>
+                            <span id="github"></span>
+                        </div>
+                        <h4 class="ltitle">Hobbies</h4>
+                        <ul class="hoby row no-margin">
+                            <li><i class="fas fa-pencil-alt"></i> <br> Writing</li>
+                            <li><i class="fas fa-bicycle"></i> <br> Cycling</li>
+                            <li><i class="fas fa-futbol"></i> <br> Football</li>
+                            <li><i class="fas fa-film"></i><br> Movies</li>
+                            <li><i class="fas fa-plane-departure"></i> <br>Travel</li>
+                            <li><i class="fas fa-gamepad"></i> <br> Games</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 rt-div">
+                    <div class="rit-cover">
+                        <div class="hotkey">
+                            <h1 class="" id="name2"></h1>
+                            <small id="profession2"></small>
+                        </div>
+
+                        <h2 class="rit-titl"><i class="far fa-user"></i> Objective</h2>
+                        <div class="about">
+                            <p id="objective"></p>
+                            <!-- <div class="btn-ro row no-margin">
+                                <ul class="btn-link">
+                                    <li>
+                                        <a href="https://letsconnectwithme.html-5.me/" target="_blank"><i
+                                                class="fas fa-paper-plane"></i> Hire Me</a>
+                                    </li>
+                                    <li>
+                                        <a href=""><i class="fas fa-cloud-download-alt"></i> Download Resume</a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                        </div>
+
+                        <h2 class="rit-titl"><i class="fas fa-briefcase"></i> Work Experiance</h2>
+                        <div class="work-exp">
+                            <h6>
+                                <div id="exp1"> </div> <span id="fromto">2008-2011</span>
+                            </h6>
+                            <i id="company1"></i>
+                            <div class="about" id="descriptionex">
+
+                            </div>
+                        </div>
+
+                        <div class="work-exp">
+                            <h6>
+                                <div id="exp2"> </div> <span id="fromto2">2008-2011</span>
+                            </h6>
+                            <i>
+                                <div id="company2"></div>
+                            </i>
+                            <div class="about" id="descriptionex2">
+
+                            </div>
+                        </div>
+
+                        <h2 class="rit-titl"><i class="fas fa-graduation-cap"></i> Education</h2>
+                        <div class="education">
+                            <ul class="row no-margin">
+                                <li class="col-6 "><span id="scfromto">2013-2015</span> <br>
+                                    <span id="degree">Master Degree - Cambridg University</span>
+                                </li>
+                                <li class="col-6 "><span id="scfromto2">2013-2015</span> <br>
+                                    <span id="degree2">Degree - Cambridg University</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <h2 class="rit-titl"><i class="fas fa-users-cog"></i> Skills</h2>
+                        <div class="profess-cover row no-margin">
+                            <div class="col-md-6">
+                                <div class=" prog-row row">
+                                    <div class="col-sm-6" id="skill1">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="progress">
+                                            <div class="progress-bar" id="pipe1" role="progressbar" style="width: 65%"
+                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row prog-row">
+                                    <div class="col-sm-6" id="skill2">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="progress">
+                                            <div class="progress-bar" id="pipe2" role="progressbar" style="width: 85%"
+                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row prog-row">
+                                    <div class="col-sm-6" id="skill3">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="progress">
+                                            <div class="progress-bar" id="pipe3" role="progressbar" style="width: 75%"
+                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row prog-row">
+                                    <div class="col-sm-6" id="skill4">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="progress">
+                                            <div class="progress-bar" id="pipe4" role="progressbar" style="width: 88%"
+                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="editor"></div>
+        <br> <br>
+        <div class="row">
+            <div class="h3 text-center btn-next col mb-5 mx-2"><button type="button"
+                    class="btn btn-next btn-dark rounded-pill" id="back" onclick="back()">&nbsp;<b>Back &
+                        Edit</b>&nbsp;</button>
+            </div>
+
+            <div class="h3 text-center col btn-next mb-5 mx-2"><button type="button"
+                    class="btn btn-next btn-dark rounded-pill" id="downloadPDF">&nbsp;<b>Save as .Pdf</b>&nbsp;</button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="navi bg-dark text-light text-center text-lg-start rounded-pill rounded-bottom">
+        <!-- Copyright -->
+        <div class="text-center p-2"></div>
+        <div class="h4">○ Services</div>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+
+</body>
+
+<!-- bootstrap javascript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+
+<!-- floura text editor -->
+<script type="text/javascript" src="node_modules/froala-editor/js/froala_editor.pkgd.min.js"></script>
+<script> var editor = new FroalaEditor('#froala');</script>
+
+</html>
